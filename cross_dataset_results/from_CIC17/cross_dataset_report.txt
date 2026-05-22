@@ -1,0 +1,47 @@
+======================================================================
+  CROSS-DATASET GENERALIZATION REPORT
+  Reference model : XGBClassifier
+  Trained on      : CIC17
+  Classes         : ['Normal', 'Attack']
+  Tested on       : 9 datasets
+======================================================================
+
+  Within-dataset (CIC17):
+    F1=0.9932  MCC=97.36%  Acc=0.9932  N=44,688
+
+  Cross-dataset (avg over 8 targets):
+    F1=0.8142  MCC=10.81%  Acc=0.8685
+
+  Generalization gap:
+    F1  drop : +0.1790
+    MCC drop : +86.55%
+
+  Best cross-dataset:
+    CIC18_THURSDAY-1     MCC=42.62%  F1=0.9324
+
+  Worst cross-dataset:
+    CIC18_TUESDAY        MCC=-1.55%  F1=0.8432
+
+  ── Full Results ──
+           Target   Type  Accuracy     F1  Precision  Recall   MCC  AUC-ROC  N_test  Features_matched
+            CIC17 Within    0.9932 0.9932     0.9933  0.9932 97.36   0.9994   44688                20
+   CIC18_FRIDAY-2  Cross    0.9966 0.9966     0.9965  0.9966 27.68   0.8943   16632                20
+ CIC18_THURSDAY-1  Cross    0.9479 0.9324     0.9461  0.9479 42.62   0.9165   15912                20
+ CIC18_THURSDAY-2  Cross    0.9968 0.9964     0.9961  0.9968 18.45   0.8950   16651                20
+ CIC18_THURSDAY-3  Cross    0.7495 0.6452     0.6372  0.7495  0.61   0.5073    4990                20
+    CIC18_TUESDAY  Cross    0.8922 0.8432     0.7994  0.8922 -1.55   0.9085   60000                20
+CIC18_WEDNESDAY-1  Cross    0.8470 0.7779     0.7192  0.8470 -1.47   0.9060   12396                20
+CIC18_WEDNESDAY-2  Cross    0.6427 0.5029     0.4130  0.6427  0.00   0.1537   11228                20
+CIC18_WEDNESDAY-3  Cross    0.8749 0.8188     0.7847  0.8749  0.11   0.5441    9173                20
+
+  ── SHAP Stability ──
+    CIC17 ↔ CIC18_FRIDAY-2: top-5 overlap = 3/5 (Bwd Packet Length Mean, Bwd Packet Length Std, Total Length of Fwd Packets)
+    CIC17 ↔ CIC18_THURSDAY-1: top-5 overlap = 4/5 (Bwd Packet Length Mean, Bwd Packet Length Std, Bwd Packets/s, Total Length of Fwd Packets)
+    CIC17 ↔ CIC18_THURSDAY-2: top-5 overlap = 3/5 (Bwd Packet Length Mean, Bwd Packet Length Std, Total Length of Fwd Packets)
+    CIC17 ↔ CIC18_THURSDAY-3: top-5 overlap = 3/5 (Bwd Packet Length Mean, Bwd Packet Length Std, Bwd Packets/s)
+    CIC17 ↔ CIC18_TUESDAY: top-5 overlap = 3/5 (Bwd Packet Length Mean, Bwd Packet Length Std, Total Length of Fwd Packets)
+    CIC17 ↔ CIC18_WEDNESDAY-1: top-5 overlap = 4/5 (Bwd Packet Length Mean, Bwd Packet Length Std, Bwd Packets/s, Total Length of Fwd Packets)
+    CIC17 ↔ CIC18_WEDNESDAY-2: top-5 overlap = 1/5 (Bwd Packet Length Mean)
+    CIC17 ↔ CIC18_WEDNESDAY-3: top-5 overlap = 3/5 (Bwd Packet Length Mean, Bwd Packet Length Std, Bwd Packets/s)
+
+======================================================================

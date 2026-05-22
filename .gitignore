@@ -1,0 +1,21 @@
+# Mengabaikan dataset raw dan data hasil preparasi
+/prepared_data/
+*.csv
+*.pcap
+*.pcap_ISCX.csv
+
+# Mengabaikan model yang ukurannya besar
+/model_outputs-v5/
+*.pkl
+*.h5
+*.joblib
+
+# Mengabaikan environment Python
+__pycache__/
+.venv/
+venv/
+env/
+
+# Mengabaikan file sistem Windows/Mac
+.DS_Store
+Thumbs.db
