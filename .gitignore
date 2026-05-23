@@ -20,3 +20,4 @@ env/
 # 5. Mengabaikan file sistem Windows/Mac
 .DS_Store
 Thumbs.db
+desktop.ini
