@@ -1,0 +1,2 @@
+Train Dataset,Within F1,Cross F1 (avg),F1 Gap,Within MCC%,Cross MCC% (avg),MCC Gap%,N Cross Targets
+CIC17,0.9932,0.8142,0.179,97.36,10.81,86.55,8

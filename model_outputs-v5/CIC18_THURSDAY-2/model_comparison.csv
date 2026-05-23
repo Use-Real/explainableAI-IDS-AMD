@@ -1,0 +1,9 @@
+Model,Accuracy,F1,Precision,Recall,AUC-ROC,Train(s)
+Decision Tree,0.9999,0.9999,0.9999,0.9999,N/A,0.67
+Random Forest,0.9999,0.9999,0.9999,0.9999,N/A,1.92
+Gradient Boosting,0.9999,0.9999,0.9999,0.9999,N/A,57.16
+XGBoost,0.9997,0.9997,0.9997,0.9997,N/A,0.33
+LightGBM,0.9999,0.9999,0.9999,0.9999,N/A,0.35
+Logistic Regression,0.9469,0.9705,0.9976,0.9469,N/A,0.87
+K-Nearest Neighbors,0.9992,0.9993,0.9993,0.9992,N/A,0.01
+Naive Bayes,0.331,0.4943,0.9976,0.331,N/A,0.04

@@ -1,21 +1,22 @@
-# Mengabaikan dataset raw dan data hasil preparasi
-/prepared_data/
-*.csv
+# 1. Mengabaikan file dataset asli dan mentah
 *.pcap
 *.pcap_ISCX.csv
 
-# Mengabaikan model yang ukurannya besar
-/model_outputs-v5/
+# 2. HANYA mengabaikan CSV di dalam prepared_data (yaitu train.csv & test.csv yang bergiga-giga)
+# File CSV di folder lain (seperti hasil laporan & matriks) AKAN TETAP ter-upload
+/prepared_data/**/*.csv
+
+# 3. Mengabaikan file model dan partisi data biner (karena ukurannya sangat besar)
 *.pkl
 *.h5
 *.joblib
 
-# Mengabaikan environment Python
+# 4. Mengabaikan environment Python
 __pycache__/
 .venv/
 venv/
 env/
 
-# Mengabaikan file sistem Windows/Mac
+# 5. Mengabaikan file sistem Windows/Mac
 .DS_Store
 Thumbs.db

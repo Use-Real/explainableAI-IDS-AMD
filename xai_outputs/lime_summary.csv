@@ -1,0 +1,6 @@
+Instance,True,Predicted,Confidence,Top Feature,Top Weight
+0,Normal,Normal,99.98,Bwd Packet Length Std <= -0.46,0.192601091602561
+1,Normal,Normal,99.98,Bwd Packet Length Std <= -0.46,0.1921365666877499
+2,Normal,Normal,94.28,Bwd Packet Length Std <= -0.46,0.2093780233313406
+3,Normal,Normal,99.96,Subflow Fwd Packets > -0.01,0.12633281159082876
+4,Normal,Normal,99.97,Bwd Packet Length Std <= -0.46,0.19400403406856875

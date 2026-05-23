@@ -1,0 +1,375 @@
+{
+  "dataset_name": "CIC17",
+  "source_path": "H:\\My Drive\\0.RPL-LJ\\ALTERNATE IDE JUDUL\\CIC-IDS2017\\CSVs\\TrafficLabelling",
+  "n_raw_rows": 3119345,
+  "n_after_preprocess": 2234368,
+  "n_numeric_features": 76,
+  "column_rename_report": {
+    "dataset_name": "CIC17",
+    "whitespace_or_bom_fixed": [
+      {
+        "from": " Source IP",
+        "to": "Source IP"
+      },
+      {
+        "from": " Source Port",
+        "to": "Source Port"
+      },
+      {
+        "from": " Destination IP",
+        "to": "Destination IP"
+      },
+      {
+        "from": " Destination Port",
+        "to": "Destination Port"
+      },
+      {
+        "from": " Protocol",
+        "to": "Protocol"
+      },
+      {
+        "from": " Timestamp",
+        "to": "Timestamp"
+      },
+      {
+        "from": " Flow Duration",
+        "to": "Flow Duration"
+      },
+      {
+        "from": " Total Fwd Packets",
+        "to": "Total Fwd Packets"
+      },
+      {
+        "from": " Total Backward Packets",
+        "to": "Total Backward Packets"
+      },
+      {
+        "from": " Total Length of Bwd Packets",
+        "to": "Total Length of Bwd Packets"
+      },
+      {
+        "from": " Fwd Packet Length Max",
+        "to": "Fwd Packet Length Max"
+      },
+      {
+        "from": " Fwd Packet Length Min",
+        "to": "Fwd Packet Length Min"
+      },
+      {
+        "from": " Fwd Packet Length Mean",
+        "to": "Fwd Packet Length Mean"
+      },
+      {
+        "from": " Fwd Packet Length Std",
+        "to": "Fwd Packet Length Std"
+      },
+      {
+        "from": " Bwd Packet Length Min",
+        "to": "Bwd Packet Length Min"
+      },
+      {
+        "from": " Bwd Packet Length Mean",
+        "to": "Bwd Packet Length Mean"
+      },
+      {
+        "from": " Bwd Packet Length Std",
+        "to": "Bwd Packet Length Std"
+      },
+      {
+        "from": " Flow Packets/s",
+        "to": "Flow Packets/s"
+      },
+      {
+        "from": " Flow IAT Mean",
+        "to": "Flow IAT Mean"
+      },
+      {
+        "from": " Flow IAT Std",
+        "to": "Flow IAT Std"
+      },
+      {
+        "from": " Flow IAT Max",
+        "to": "Flow IAT Max"
+      },
+      {
+        "from": " Flow IAT Min",
+        "to": "Flow IAT Min"
+      },
+      {
+        "from": " Fwd IAT Mean",
+        "to": "Fwd IAT Mean"
+      },
+      {
+        "from": " Fwd IAT Std",
+        "to": "Fwd IAT Std"
+      },
+      {
+        "from": " Fwd IAT Max",
+        "to": "Fwd IAT Max"
+      },
+      {
+        "from": " Fwd IAT Min",
+        "to": "Fwd IAT Min"
+      },
+      {
+        "from": " Bwd IAT Mean",
+        "to": "Bwd IAT Mean"
+      },
+      {
+        "from": " Bwd IAT Std",
+        "to": "Bwd IAT Std"
+      },
+      {
+        "from": " Bwd IAT Max",
+        "to": "Bwd IAT Max"
+      },
+      {
+        "from": " Bwd IAT Min",
+        "to": "Bwd IAT Min"
+      },
+      {
+        "from": " Bwd PSH Flags",
+        "to": "Bwd PSH Flags"
+      },
+      {
+        "from": " Fwd URG Flags",
+        "to": "Fwd URG Flags"
+      },
+      {
+        "from": " Bwd URG Flags",
+        "to": "Bwd URG Flags"
+      },
+      {
+        "from": " Fwd Header Length",
+        "to": "Fwd Header Length"
+      },
+      {
+        "from": " Bwd Header Length",
+        "to": "Bwd Header Length"
+      },
+      {
+        "from": " Bwd Packets/s",
+        "to": "Bwd Packets/s"
+      },
+      {
+        "from": " Min Packet Length",
+        "to": "Min Packet Length"
+      },
+      {
+        "from": " Max Packet Length",
+        "to": "Max Packet Length"
+      },
+      {
+        "from": " Packet Length Mean",
+        "to": "Packet Length Mean"
+      },
+      {
+        "from": " Packet Length Std",
+        "to": "Packet Length Std"
+      },
+      {
+        "from": " Packet Length Variance",
+        "to": "Packet Length Variance"
+      },
+      {
+        "from": " SYN Flag Count",
+        "to": "SYN Flag Count"
+      },
+      {
+        "from": " RST Flag Count",
+        "to": "RST Flag Count"
+      },
+      {
+        "from": " PSH Flag Count",
+        "to": "PSH Flag Count"
+      },
+      {
+        "from": " ACK Flag Count",
+        "to": "ACK Flag Count"
+      },
+      {
+        "from": " URG Flag Count",
+        "to": "URG Flag Count"
+      },
+      {
+        "from": " CWE Flag Count",
+        "to": "CWE Flag Count"
+      },
+      {
+        "from": " ECE Flag Count",
+        "to": "ECE Flag Count"
+      },
+      {
+        "from": " Down/Up Ratio",
+        "to": "Down/Up Ratio"
+      },
+      {
+        "from": " Average Packet Size",
+        "to": "Average Packet Size"
+      },
+      {
+        "from": " Avg Fwd Segment Size",
+        "to": "Avg Fwd Segment Size"
+      },
+      {
+        "from": " Avg Bwd Segment Size",
+        "to": "Avg Bwd Segment Size"
+      },
+      {
+        "from": " Fwd Header Length.1",
+        "to": "Fwd Header Length.1"
+      },
+      {
+        "from": " Fwd Avg Packets/Bulk",
+        "to": "Fwd Avg Packets/Bulk"
+      },
+      {
+        "from": " Fwd Avg Bulk Rate",
+        "to": "Fwd Avg Bulk Rate"
+      },
+      {
+        "from": " Bwd Avg Bytes/Bulk",
+        "to": "Bwd Avg Bytes/Bulk"
+      },
+      {
+        "from": " Bwd Avg Packets/Bulk",
+        "to": "Bwd Avg Packets/Bulk"
+      },
+      {
+        "from": " Subflow Fwd Bytes",
+        "to": "Subflow Fwd Bytes"
+      },
+      {
+        "from": " Subflow Bwd Packets",
+        "to": "Subflow Bwd Packets"
+      },
+      {
+        "from": " Subflow Bwd Bytes",
+        "to": "Subflow Bwd Bytes"
+      },
+      {
+        "from": " Init_Win_bytes_backward",
+        "to": "Init_Win_bytes_backward"
+      },
+      {
+        "from": " act_data_pkt_fwd",
+        "to": "act_data_pkt_fwd"
+      },
+      {
+        "from": " min_seg_size_forward",
+        "to": "min_seg_size_forward"
+      },
+      {
+        "from": " Active Std",
+        "to": "Active Std"
+      },
+      {
+        "from": " Active Max",
+        "to": "Active Max"
+      },
+      {
+        "from": " Active Min",
+        "to": "Active Min"
+      },
+      {
+        "from": " Idle Std",
+        "to": "Idle Std"
+      },
+      {
+        "from": " Idle Max",
+        "to": "Idle Max"
+      },
+      {
+        "from": " Idle Min",
+        "to": "Idle Min"
+      },
+      {
+        "from": " Label",
+        "to": "Label"
+      }
+    ],
+    "renamed_columns": {},
+    "rename_conflicts": [],
+    "duplicate_columns_coalesced_after_rename": [],
+    "target_recovery_report": {
+      "target_col": "Label",
+      "candidate_columns": [
+        {
+          "column": "Label",
+          "position": 84,
+          "reason": "name_match"
+        }
+      ],
+      "non_empty_labels_after_recovery": 3119345,
+      "label_value_preview_top10": {
+        "BENIGN": 2561699,
+        "DoS Hulk": 231073,
+        "PortScan": 158930,
+        "DDoS": 128027,
+        "DoS GoldenEye": 10293,
+        "FTP-Patator": 7938,
+        "SSH-Patator": 5897,
+        "DoS slowloris": 5796,
+        "DoS Slowhttptest": 5499,
+        "Bot": 1966
+      },
+      "status": "recovered"
+    },
+    "duplicate_columns_dropped_after_rename": []
+  },
+  "feature_schema_report": {
+    "enabled": true,
+    "dataset_name": "CIC17",
+    "reference_dataset_name": "CIC17",
+    "reference_schema_file": "prepared_data\\_reference_numeric_cols.pkl",
+    "method": "reference_created_or_refreshed",
+    "n_features_before": 76,
+    "n_features_after": 76,
+    "missing_reference_features_added": [],
+    "extra_features_dropped": [],
+    "extra_features_kept": [],
+    "reference_feature_count": 76
+  },
+  "binary_mode": true,
+  "class_names": [
+    "Normal",
+    "Attack"
+  ],
+  "original_distribution": {
+    "BENIGN": 1897863,
+    "DoS Hulk": 172849,
+    "DDoS": 128016,
+    "DoS GoldenEye": 10286,
+    "FTP-Patator": 5933,
+    "DoS slowloris": 5385,
+    "DoS Slowhttptest": 5228,
+    "SSH-Patator": 3219,
+    "PortScan": 1958,
+    "Web Attack \u0096 Brute Force": 1470,
+    "Bot": 1441,
+    "Web Attack \u0096 XSS": 652,
+    "Infiltration": 36,
+    "Web Attack \u0096 Sql Injection": 21,
+    "Heartbleed": 11
+  },
+  "sample_frac": 0.1,
+  "sample_report": {
+    "method": "StratifiedShuffleSplit",
+    "dropped": [],
+    "soft_used": [],
+    "n_before": 2234368,
+    "n_after": 223436
+  },
+  "n_train": 178748,
+  "n_test": 44688,
+  "train_distribution": {
+    "0": 151828,
+    "1": 26920
+  },
+  "test_distribution": {
+    "0": 37958,
+    "1": 6730
+  },
+  "random_state": 42,
+  "elapsed_seconds": 185.1
+}
