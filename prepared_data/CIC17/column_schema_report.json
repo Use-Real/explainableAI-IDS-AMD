@@ -295,18 +295,11 @@
           "reason": "name_match"
         }
       ],
-      "non_empty_labels_after_recovery": 3119345,
+      "non_empty_labels_after_recovery": 192703,
       "label_value_preview_top10": {
-        "BENIGN": 2561699,
-        "DoS Hulk": 231073,
-        "PortScan": 158930,
-        "DDoS": 128027,
-        "DoS GoldenEye": 10293,
-        "FTP-Patator": 7938,
-        "SSH-Patator": 5897,
-        "DoS slowloris": 5796,
-        "DoS Slowhttptest": 5499,
-        "Bot": 1966
+        "BENIGN": 183523,
+        "DoS GoldenEye": 9169,
+        "Heartbleed": 11
       },
       "status": "recovered"
     },
@@ -315,14 +308,16 @@
   "feature_schema_report": {
     "enabled": true,
     "dataset_name": "CIC17",
-    "reference_dataset_name": "CIC17",
+    "reference_dataset_name": "CIC18",
     "reference_schema_file": "prepared_data\\_reference_numeric_cols.pkl",
-    "method": "reference_created_or_refreshed",
+    "method": "aligned_to_reference",
     "n_features_before": 76,
     "n_features_after": 76,
     "missing_reference_features_added": [],
     "extra_features_dropped": [],
     "extra_features_kept": [],
-    "reference_feature_count": 76
+    "reference_feature_count": 76,
+    "missing_fill_value": 0.0,
+    "drop_non_reference_features": true
   }
 }

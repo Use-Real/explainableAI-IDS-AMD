@@ -1,0 +1,128 @@
+================================================================================
+LAPORAN JUSTIFIKASI METODOLOGIS:
+MITIGASI PENGGUNAAN MODEL TUNGGAL (RANDOM FOREST) MENJADI MULTI-MODEL (8 ALGORITMA)
+================================================================================
+
+1. RINGKASAN KONTEKS
+--------------------
+Pada rancangan awal (project_plan.txt), pembangunan model Intrusion Detection
+System (IDS) direncanakan hanya menggunakan satu algoritma, yaitu Random Forest
+Classifier. Dalam implementasi aktual (01_train_save_models.py), pendekatan
+tersebut dimitigasi dan diperluas menjadi evaluasi komparatif terhadap 8
+algoritma machine learning yang berbeda, kemudian model dengan performa terbaik
+dipilih secara objektif sebagai model referensi untuk analisis Explainable AI
+(SHAP & LIME) dan pengujian lintas-dataset (cross-dataset).
+
+Kedelapan model yang dilatih dan dievaluasi adalah:
+  1. Decision Tree (max_depth=10)
+  2. Random Forest (n_estimators=100, max_depth=15, n_jobs=-1)  [Model Awal/Baseline]
+  3. Gradient Boosting (n_estimators=100, learning_rate=0.1, max_depth=5)
+  4. XGBoost (n_estimators=100, learning_rate=0.1, max_depth=6, tree_method="hist")
+  5. LightGBM (n_estimators=100, learning_rate=0.1, max_depth=6)
+  6. Logistic Regression (max_iter=1000)
+  7. K-Nearest Neighbors (n_neighbors=5)
+  8. Naive Bayes (GaussianNB)
+
+
+2. APAKAH PERUBAHAN KE 8 MODEL INI AMAN UNTUK PROYEK AKHIR?
+----------------------------------------------------------
+YA, AMAN DAN SECARA METODOLOGIS LEBIH KUAT, dengan beberapa alasan utama:
+
+  a. Random Forest tetap dipertahankan di dalam pipeline:
+     - Model Random Forest tetap dilatih dan dievaluasi sebagai salah satu dari
+       8 kandidat model (bahkan menjadi baseline utama).
+     - Tahap Seleksi Fitur (select_features di 01_train_save_models.py) tetap
+       menggunakan RandomForestClassifier pada data latih (train-only), sehingga
+       tetap sesuai 100% dengan Fase 2 project_plan.txt.
+
+  b. Bebas dari Data Leakage dan Bias Evaluasi:
+     - Seluruh 8 model dilatih menggunakan data latih yang sama persis setelah
+       pembagian stratified 80:20, seleksi fitur top-20 (train-only),
+       StandardScaler (fit pada train-only), dan SMOTE (train-only).
+     - Evaluasi dilakukan pada data uji (test set) yang sama sehingga perbandingan
+       antar-model bersifat adil (apples-to-apples).
+
+  c. Tetap Kompatibel dengan Pipeline XAI (SHAP & LIME):
+     - Apabila model terbaik yang terpilih berasal dari keluarga berbasis pohon
+       (Random Forest, XGBoost, LightGBM, Decision Tree, Gradient Boosting),
+       SHAP secara otomatis menggunakan TreeExplainer yang cepat dan eksak.
+     - LIME (LimeTabularExplainer) bersifat model-agnostic sehingga dapat
+       menjelaskan model mana pun yang terpilih tanpa kendala kompatibilitas.
+     - Catatan teknis: Pada data flow jaringan tabular seperti CIC-IDS2018 dan
+       CIC-IDS2017, model berbasis ensemble pohon (Random Forest / XGBoost /
+       LightGBM) hampir selalu mendominasi performa dibanding model linear
+       atau probabilistik sederhana. (Catatan: jika model non-tree seperti
+       LR/KNN/NB menang—yang sangat jarang terjadi pada data IDS—Script 03
+       melewati SHAP TreeExplainer; namun di skenario nyata pemenangnya selalu
+       model ensemble tree).
+
+  d. Komputasi Tetap Terkendali:
+     - Data telah melalui stratified subsampling 10% (maks. 300.000 baris) pada
+       Script 00, serta 5-fold CV pada Script 01 melewati model yang terlalu
+       lambat (Gradient Boosting & KNN) saat validasi silang agar waktu eksekusi
+       tetap efisien.
+
+
+3. ALASAN MITIGASI DARI RANDOM FOREST SAJA MENJADI 8 MODEL
+----------------------------------------------------------
+Berikut adalah argumen akademis dan teknis mengapa mitigasi ke 8 model dilakukan:
+
+  1) Menghindari Asumsi Prematur (Single-Model Bias / No Free Lunch Theorem)
+     Mengunci proyek pada satu algoritma (Random Forest) tanpa pembanding
+     berisiko mengasumsikan bahwa Random Forest pasti optimal pada karakteristik
+     distribusi trafik CIC-IDS2018. Berdasarkan No Free Lunch Theorem, tidak ada
+     satu algoritma yang unggul di semua distribusi data. Menguji 8 algoritma
+     memastikan pilihan model didasarkan pada bukti empiris, bukan asumsi.
+
+  2) Representasi Lintas Paradigma Algoritma Machine Learning
+     Delapan algoritma yang dipilih mewakili 5 paradigma utama pembelajaran mesin:
+       - Linear Model        : Logistic Regression
+       - Probabilistic Model : Gaussian Naive Bayes
+       - Instance-Based      : K-Nearest Neighbors (KNN)
+       - Single Tree         : Decision Tree
+       - Bagging Ensemble    : Random Forest (baseline awal)
+       - Boosting Ensembles  : Gradient Boosting, XGBoost, LightGBM
+     Dengan membandingkan kelima paradigma ini, penelitian dapat menunjukkan
+     mengapa metode ensemble tree (bagging/boosting) lebih unggul dalam
+     menangkap pola non-linear dan interaksi fitur kompleks pada trafik jaringan
+     dibandingkan model linear atau asumsi independensi fitur (Naive Bayes).
+
+  3) Mitigasi Risiko Performa & Bukti Empiris dari Eksperimen Awal
+     Pada uji coba sebelumnya (dengan dataset referensi CIC-IDS2017), evaluasi
+     multi-model menunjukkan bahwa:
+       - Naive Bayes mengalami kegagalan besar pada data tidak seimbang
+         (Accuracy=0.18, F1 weighted=0.10), menjadi bukti pentingnya pemilihan
+         model dan metrik evaluasi yang tepat.
+       - Logistic Regression (F1=0.94) tertinggal jauh dari model berbasis
+         pohon (F1=0.99).
+       - Di antara model ensemble terbaik, XGBoost (F1=0.9932, MCC=97.36%)
+         sedikit mengungguli Random Forest maupun model lainnya, sehingga layak
+         dipilih sebagai model terbaik untuk tahap XAI dan cross-dataset.
+     Tanpa pembandingan 8 model, potensi peningkatan performa dan stabilitas
+     dari algoritma boosting modern (XGBoost / LightGBM) tidak akan terdeteksi.
+
+  4) Meningkatkan Validitas Ilmiah (Scientific Rigor) untuk Proyek Akhir
+     Dalam penulisan skripsi/Proyek Akhir atau publikasi ilmiah, melaporkan
+     hanya satu model sering dikritik oleh penguji atau reviewer karena tidak
+     adanya baseline pembanding (ablation/benchmarking). Dengan mengevaluasi
+     8 model menggunakan metrik lengkap (Accuracy, Precision, Recall, F1-Score,
+     MCC, AUC-ROC, 5-Fold CV, dan waktu pelatihan), pemilihan model terbaik
+     menjadi transparan, terukur, dan dapat dipertanggungjawabkan secara ilmiah.
+
+  5) Mendukung Analisis XAI yang Lebih Bermakna
+     Jika model terbaik yang dianalisis dengan SHAP dan LIME terbukti merupakan
+     pemenang dari 8 kandidat algoritma, maka interpretasi fitur penting (feature
+     importance) dan analisis konsistensi Spearman Rank Correlation memiliki
+     bobot validitas yang lebih tinggi karena menjelaskan model paling akurat
+     pada domain data tersebut, bukan model yang dipilih secara sembarang.
+
+
+4. KESIMPULAN
+-------------
+Beralih dari Random Forest tunggal menjadi komparasi 8 model (dengan tetap
+menjadikan Random Forest sebagai baseline dan selektor fitur) merupakan
+langkah mitigasi yang AMAN, VALID, dan MENINGKATKAN KUALITAS PENELITIAN.
+Pendekatan ini menjaga seluruh struktur pipeline pada project_plan.txt sambil
+memperkuat landasan empiris sebelum masuk ke tahap Explainable AI (SHAP & LIME)
+dan pengujian generalisasi cross-dataset dari CIC-IDS2018 ke CIC-IDS2017.
+================================================================================

@@ -1,0 +1,134 @@
+======================================================================
+  RUN LOG       : log_00
+  Script        : 00_prepare_datasets.py
+  Start Time    : 2026-11-26 22:33:56
+  Working Dir   : H:\My Drive\0.RPL-LJ\ALTERNATE IDE JUDUL\ARAHAN\Folder_kerja\explainableAI-IDS-main-AMD
+  Latest Log    : log_output\log_00\log_00.txt
+  Archived Log  : log_output\log_00\history\log_00_20261126_223356.txt
+======================================================================
+
+
+======================================================================
+  SCRIPT 00 — PREPARE DATASETS
+  Datasets     : 2
+  Sample frac  : 10%
+  Mode         : Binary
+  Output       : ./prepared_data/
+======================================================================
+
+======================================================================
+  PREPARING: CIC18
+  Path: H:\My Drive\0.RPL-LJ\ALTERNATE IDE JUDUL\CIC-IDS2018\DAYS
+======================================================================
+
+  Loading CIC18...
+    Reading: Fri-02-03-2018.csv
+    Reading: Fri-16-02-2018.csv
+    Reading: Fri-23-02-2018.csv
+    Reading: Thur-01-03-2018.csv
+    Reading: Thur-15-02-2018.csv
+    Reading: Thur-22-02-2018.csv
+    Reading: Tues-20-02-2018.csv
+    Reading: Wed-14-02-2018.csv
+    Reading: Wed-21-02-2018.csv
+    Reading: Wed-28-02-2018.csv
+
+  ✗ FAILED CIC18: Unable to allocate 248. MiB for an array with shape (2, 16233002) and data type object
+Traceback (most recent call last):
+  File "h:\My Drive\0.RPL-LJ\ALTERNATE IDE JUDUL\ARAHAN\Folder_kerja\explainableAI-IDS-main-AMD\00_prepare_datasets.py", line 981, in main
+    report = process_one_dataset(name, path)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "h:\My Drive\0.RPL-LJ\ALTERNATE IDE JUDUL\ARAHAN\Folder_kerja\explainableAI-IDS-main-AMD\00_prepare_datasets.py", line 802, in process_one_dataset
+    df = pd.concat(dfs, ignore_index=True)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\yusri\AppData\Local\Programs\Python\Python311\Lib\site-packages\pandas\core\reshape\concat.py", line 395, in concat
+    return op.get_result()
+           ^^^^^^^^^^^^^^^
+  File "C:\Users\yusri\AppData\Local\Programs\Python\Python311\Lib\site-packages\pandas\core\reshape\concat.py", line 684, in get_result
+    new_data = concatenate_managers(
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\yusri\AppData\Local\Programs\Python\Python311\Lib\site-packages\pandas\core\internals\concat.py", line 189, in concatenate_managers
+    values = _concatenate_join_units(join_units, copy=copy)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\yusri\AppData\Local\Programs\Python\Python311\Lib\site-packages\pandas\core\internals\concat.py", line 486, in _concatenate_join_units
+    concat_values = concat_compat(to_concat, axis=1)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\yusri\AppData\Local\Programs\Python\Python311\Lib\site-packages\pandas\core\dtypes\concat.py", line 144, in concat_compat
+    result = np.concatenate(to_concat_arrs, axis=axis)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+numpy._core._exceptions._ArrayMemoryError: Unable to allocate 248. MiB for an array with shape (2, 16233002) and data type object
+
+======================================================================
+  PREPARING: CIC17
+  Path: H:\My Drive\0.RPL-LJ\ALTERNATE IDE JUDUL\CIC-IDS2017\CSVs\TrafficLabelling
+======================================================================
+
+  Loading CIC17...
+    Reading: Friday-WorkingHours-Afternoon-DDos.pcap_ISCX.csv
+    Reading: Friday-WorkingHours-Afternoon-PortScan.pcap_ISCX.csv
+    Reading: Friday-WorkingHours-Morning.pcap_ISCX.csv
+    Reading: Monday-WorkingHours.pcap_ISCX.csv
+    Reading: Thursday-WorkingHours-Afternoon-Infilteration.pcap_ISCX.csv
+    Reading: Thursday-WorkingHours-Morning-WebAttacks.pcap_ISCX.csv
+    Reading: Tuesday-WorkingHours.pcap_ISCX.csv
+    Reading: Wednesday-workingHours.pcap_ISCX.csv
+    Loaded 8 files.
+    Raw shape : 3,119,345 × 85
+
+  Preprocessing CIC17...
+    Target recovery          : 1 candidate column(s), 3,119,345 non-empty label(s) recovered
+    Label preview            : {'BENIGN': 2561699, 'DoS Hulk': 231073, 'PortScan': 158930, 'DDoS': 128027, 'DoS GoldenEye': 10293, 'FTP-Patator': 7938, 'SSH-Patator': 5897, 'DoS slowloris': 5796, 'DoS Slowhttptest': 5499, 'Bot': 1966}
+    Column names normalized : 70 whitespace/BOM fix(es), 0 alias rename(s), 0 alias overlap(s), 0 duplicate column group(s) coalesced
+    Excluded 8 metadata columns
+    Duplicates removed : 884,977
+    Shape after preprocess : (2234368, 77)
+    Reference schema set from CIC17: 76 numeric feature(s)
+    Binary encoding → {0: 1897863, 1: 336505}
+
+  Target sample size: 223,436 (10% of 2,234,368, capped at 300,000)
+
+  [CIC17 sampling]
+    Input    : 2,234,368 rows, 2 classes
+    Method   : StratifiedShuffleSplit (no soft-floor needed)
+    Output   : 223,436 rows (10.0% of input)
+    Classes  : {0: np.int64(189786), 1: np.int64(33650)}
+
+  Train/test split (stratified, test=20%)...
+    Train : (178748, 76)  {0: 151828, 1: 26920}
+    Test  : (44688, 76)  {0: 37958, 1: 6730}
+
+  Saving to prepared_data\CIC17/
+  ✔ train.csv : 178,748 rows (79.1 MB)
+  ✔ test.csv  : 44,688 rows (19.8 MB)
+
+  ✔ CIC17 done in 266.5s
+    3,119,345 → 223,436 (sampled) → 178,748 train + 44,688 test
+
+======================================================================
+  SUMMARY
+======================================================================
+
+Dataset  Raw Rows Sampled   Train   Test  Features  Classes  Dropped   Time
+  CIC17 3,119,345 223,436 178,748 44,688        76        2        0 266.5s
+
+  ╔═══════════════════════════════════════════════════════════╗
+  ║  SCRIPT 00 COMPLETE ✔  (2980.6s total)
+  ╠═══════════════════════════════════════════════════════════╣
+  ║  Prepared 1/2 datasets
+  ║  Output: ./prepared_data/
+  ║
+  ║  Next steps — for EACH prepared dataset:
+  ║
+  ║    Edit 01_train_save_models.py:
+  ║      PREPARED_DIR = "prepared_data/CIC18"
+  ║
+  ║    Then run:
+  ║      python 01_train_save_models.py
+  ║      python 02_load_explain_models.py
+  ╚═══════════════════════════════════════════════════════════╝
+    
+
+======================================================================
+  End Time      : 2026-11-26 23:23:37
+  Elapsed       : 2980.68s
+======================================================================

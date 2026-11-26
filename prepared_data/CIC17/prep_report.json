@@ -2,7 +2,7 @@
   "dataset_name": "CIC17",
   "source_path": "H:\\My Drive\\0.RPL-LJ\\ALTERNATE IDE JUDUL\\CIC-IDS2017\\CSVs\\TrafficLabelling",
   "n_raw_rows": 3119345,
-  "n_after_preprocess": 2234368,
+  "n_after_preprocess": 2199783,
   "n_numeric_features": 76,
   "column_rename_report": {
     "dataset_name": "CIC17",
@@ -300,18 +300,11 @@
           "reason": "name_match"
         }
       ],
-      "non_empty_labels_after_recovery": 3119345,
+      "non_empty_labels_after_recovery": 192703,
       "label_value_preview_top10": {
-        "BENIGN": 2561699,
-        "DoS Hulk": 231073,
-        "PortScan": 158930,
-        "DDoS": 128027,
-        "DoS GoldenEye": 10293,
-        "FTP-Patator": 7938,
-        "SSH-Patator": 5897,
-        "DoS slowloris": 5796,
-        "DoS Slowhttptest": 5499,
-        "Bot": 1966
+        "BENIGN": 183523,
+        "DoS GoldenEye": 9169,
+        "Heartbleed": 11
       },
       "status": "recovered"
     },
@@ -320,15 +313,17 @@
   "feature_schema_report": {
     "enabled": true,
     "dataset_name": "CIC17",
-    "reference_dataset_name": "CIC17",
+    "reference_dataset_name": "CIC18",
     "reference_schema_file": "prepared_data\\_reference_numeric_cols.pkl",
-    "method": "reference_created_or_refreshed",
+    "method": "aligned_to_reference",
     "n_features_before": 76,
     "n_features_after": 76,
     "missing_reference_features_added": [],
     "extra_features_dropped": [],
     "extra_features_kept": [],
-    "reference_feature_count": 76
+    "reference_feature_count": 76,
+    "missing_fill_value": 0.0,
+    "drop_non_reference_features": true
   },
   "binary_mode": true,
   "class_names": [
@@ -336,20 +331,20 @@
     "Attack"
   ],
   "original_distribution": {
-    "BENIGN": 1897863,
-    "DoS Hulk": 172849,
     "DDoS": 128016,
-    "DoS GoldenEye": 10286,
-    "FTP-Patator": 5933,
-    "DoS slowloris": 5385,
-    "DoS Slowhttptest": 5228,
-    "SSH-Patator": 3219,
+    "BENIGN": 1978100,
     "PortScan": 1958,
-    "Web Attack \u0096 Brute Force": 1470,
     "Bot": 1441,
-    "Web Attack \u0096 XSS": 652,
     "Infiltration": 36,
+    "Web Attack \u0096 Brute Force": 1470,
+    "Web Attack \u0096 XSS": 652,
     "Web Attack \u0096 Sql Injection": 21,
+    "FTP-Patator": 5933,
+    "SSH-Patator": 3219,
+    "DoS Hulk": 172849,
+    "DoS GoldenEye": 10282,
+    "DoS slowloris": 5374,
+    "DoS Slowhttptest": 5228,
     "Heartbleed": 11
   },
   "sample_frac": 0.1,
@@ -357,19 +352,19 @@
     "method": "StratifiedShuffleSplit",
     "dropped": [],
     "soft_used": [],
-    "n_before": 2234368,
-    "n_after": 223436
+    "n_before": 2199783,
+    "n_after": 231459
   },
-  "n_train": 178748,
-  "n_test": 44688,
+  "n_train": 185167,
+  "n_test": 46292,
   "train_distribution": {
-    "0": 151828,
-    "1": 26920
+    "0": 156843,
+    "1": 28324
   },
   "test_distribution": {
-    "0": 37958,
-    "1": 6730
+    "0": 39211,
+    "1": 7081
   },
   "random_state": 42,
-  "elapsed_seconds": 185.1
+  "elapsed_seconds": 79.1
 }

@@ -1,0 +1,28 @@
+SISTEM DETEKSI INTRUSI & ANALISIS XAI
+
+TUJUAN UTAMA PROYEK:
+Membangun model Sistem Deteksi Intrusi (IDS) dengan klasifikasi biner dan menganalisis tingkat konsistensi interpretasi dari model tersebut menggunakan metode Explainable AI (SHAP dan LIME).
+
+FASE 1: PRA-PEMROSESAN DATA (DATA PREPROCESSING)
+Dataset yang digunakan: CIC-IDS2018 (Utama) dan CIC-IDS2017 (Pengujian Silang).
+- Pembersihan Data (Missing Value Handling): Menangani baris data yang mengandung missing value (nilai kosong) dan infinite value (nilai tak hingga) agar tidak menggagalkan proses pelatihan model.
+- Normalisasi Data: Melakukan normalisasi pada fitur-fitur numerik agar rentang skalanya seimbang dan tidak ada fitur yang mendominasi.
+- Pelabelan (Labelling): Mengonversi seluruh kategori jenis serangan menjadi klasifikasi biner, yaitu 0 untuk kelas normal (benign) dan 1 untuk kelas serangan (attack).
+
+FASE 2: EKSPERIMEN WITHIN-DATASET (MENGGUNAKAN CIC-IDS2018)
+- Pembagian Data (Data Splitting): Membagi dataset CIC-IDS2018 dengan rasio 80% untuk data latih (training) dan 20% untuk data uji (testing) secara proporsional (stratified).
+- Seleksi Fitur (Feature Selection): Mencari dan memilih fitur-fitur paling relevan hanya dari data latih menggunakan bantuan model Random Forest Classifier.
+- Sampling Data: Menyeimbangkan jumlah kelas pada data latih menggunakan teknik oversampling SMOTE (Synthetic Minority Over-sampling Technique) untuk mencegah bias pada kelas mayoritas.
+- Pembangunan Model: Melatih model machine learning menggunakan algoritma Random Forest dengan menyesuaikan hyperparameter seperti n_estimators, max_depth, dan n_jobs.
+- Evaluasi Model: Menguji model pada data uji menggunakan metrik evaluasi Accuracy, Precision, Recall, F1-Score, dan MCC (Matthews Correlation Coefficient).
+- Implementasi XAI (SHAP & LIME): Menjalankan algoritma SHAP dan LIME untuk menghasilkan feature importance ranking (peringkat fitur yang paling mempengaruhi keputusan model).
+- Analisis Konsistensi: Menghitung koefisien korelasi dari peringkat fitur antara SHAP dan LIME menggunakan Spearman Rank Correlation.
+
+FASE 3: EKSPERIMEN CROSS-DATASET (MENGGUNAKAN CIC-IDS2017)
+- Evaluasi Model (Cross-Dataset): Menggunakan model Random Forest terbaik yang dihasilkan pada Fase 2 untuk memprediksi dataset baru (CIC-IDS2017) tanpa melakukan pelatihan ulang.
+- Implementasi XAI (Cross-Dataset): Menerapkan kembali metode interpretasi SHAP dan LIME pada prediksi skenario lintas dataset ini untuk mendapatkan peringkat fitur yang baru.
+- Analisis Konsistensi (Cross-Dataset): Mengukur tingkat kesesuaian antara feature ranking SHAP dan LIME di lingkungan cross-dataset dengan metode Spearman Rank Correlation.
+
+FASE 4: ANALISIS PERBANDINGAN AKHIR
+- Perbandingan Metrik: Membandingkan performa klasifikasi model (F1-score dan MCC) antara pengujian within-dataset dan cross-dataset untuk mengevaluasi kemampuan generalisasi model.
+- Perbandingan Konsistensi XAI: Mengevaluasi stabilitas dan perbedaan nilai Spearman Rank Correlation antara pengujian pada within-dataset dan cross-dataset.

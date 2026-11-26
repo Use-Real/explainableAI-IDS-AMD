@@ -1,0 +1,189 @@
+======================================================================
+  RUN LOG       : log_00
+  Script        : 00_prepare_datasets.py
+  Start Time    : 2026-11-26 23:45:42
+  Working Dir   : H:\My Drive\0.RPL-LJ\ALTERNATE IDE JUDUL\ARAHAN\Folder_kerja\explainableAI-IDS-main-AMD
+  Latest Log    : log_output\log_00\log_00.txt
+  Archived Log  : log_output\log_00\history\log_00_20261126_234542.txt
+======================================================================
+
+
+======================================================================
+  SCRIPT 00 — PREPARE DATASETS
+  Datasets     : 2
+  Sample frac  : 10%
+  Mode         : Binary
+  Output       : ./prepared_data/
+======================================================================
+
+======================================================================
+  PREPARING: CIC18
+  Path: H:\My Drive\0.RPL-LJ\ALTERNATE IDE JUDUL\CIC-IDS2018\DAYS
+======================================================================
+
+  Loading CIC18...
+    Memory-safe mode         : total CSV size 6.41 GB > 1.4 GB → chunked float32 + 15% stratified pre-sample per batch
+    Reading: Fri-02-03-2018.csv
+    Target recovery          : 1 candidate column(s), 250,000 non-empty label(s) recovered
+    Label preview            : {'Bot': 200786, 'Benign': 49214}
+    Column names normalized : 0 whitespace/BOM fix(es), 49 alias rename(s), 0 alias overlap(s), 0 duplicate column group(s) coalesced
+    Reading: Fri-16-02-2018.csv
+    Target recovery          : 1 candidate column(s), 250,000 non-empty label(s) recovered
+    Label preview            : {'DoS attacks-Hulk': 91943, 'DoS attacks-SlowHTTPTest': 91434, 'Benign': 66623}
+    Column names normalized : 0 whitespace/BOM fix(es), 49 alias rename(s), 0 alias overlap(s), 0 duplicate column group(s) coalesced
+    Reading: Fri-23-02-2018.csv
+    Target recovery          : 1 candidate column(s), 250,000 non-empty label(s) recovered
+    Label preview            : {'Benign': 249434, 'Brute Force -Web': 362, 'Brute Force -XSS': 151, 'SQL Injection': 53}
+    Column names normalized : 0 whitespace/BOM fix(es), 49 alias rename(s), 0 alias overlap(s), 0 duplicate column group(s) coalesced
+    Reading: Thur-01-03-2018.csv
+    Target recovery          : 1 candidate column(s), 250,000 non-empty label(s) recovered
+    Label preview            : {'Benign': 195677, 'Infilteration': 54311, 'Label': 12}
+    Column names normalized : 0 whitespace/BOM fix(es), 49 alias rename(s), 0 alias overlap(s), 0 duplicate column group(s) coalesced
+    Reading: Thur-15-02-2018.csv
+    Target recovery          : 1 candidate column(s), 250,000 non-empty label(s) recovered
+    Label preview            : {'Benign': 197502, 'DoS attacks-GoldenEye': 41508, 'DoS attacks-Slowloris': 10990}
+    Column names normalized : 0 whitespace/BOM fix(es), 49 alias rename(s), 0 alias overlap(s), 0 duplicate column group(s) coalesced
+    Reading: Thur-22-02-2018.csv
+    Target recovery          : 1 candidate column(s), 250,000 non-empty label(s) recovered
+    Label preview            : {'Benign': 249638, 'Brute Force -Web': 249, 'Brute Force -XSS': 79, 'SQL Injection': 34}
+    Column names normalized : 0 whitespace/BOM fix(es), 49 alias rename(s), 0 alias overlap(s), 0 duplicate column group(s) coalesced
+    Reading: Tues-20-02-2018.csv
+    Target recovery          : 1 candidate column(s), 250,000 non-empty label(s) recovered
+    Label preview            : {'DDoS attacks-LOIC-HTTP': 249873, 'Benign': 127}
+    Column names normalized : 0 whitespace/BOM fix(es), 49 alias rename(s), 0 alias overlap(s), 0 duplicate column group(s) coalesced
+    Reading: Wed-14-02-2018.csv
+    Target recovery          : 1 candidate column(s), 250,000 non-empty label(s) recovered
+    Label preview            : {'FTP-BruteForce': 179244, 'SSH-Bruteforce': 70222, 'Benign': 534}
+    Column names normalized : 0 whitespace/BOM fix(es), 49 alias rename(s), 0 alias overlap(s), 0 duplicate column group(s) coalesced
+    Reading: Wed-21-02-2018.csv
+    Target recovery          : 1 candidate column(s), 250,000 non-empty label(s) recovered
+    Label preview            : {'DDOS attack-HOIC': 246048, 'Benign': 2222, 'DDOS attack-LOIC-UDP': 1730}
+    Column names normalized : 0 whitespace/BOM fix(es), 49 alias rename(s), 0 alias overlap(s), 0 duplicate column group(s) coalesced
+    Reading: Wed-28-02-2018.csv
+    Target recovery          : 1 candidate column(s), 250,000 non-empty label(s) recovered
+    Label preview            : {'Benign': 249989, 'Label': 11}
+    Column names normalized : 0 whitespace/BOM fix(es), 49 alias rename(s), 0 alias overlap(s), 0 duplicate column group(s) coalesced
+    Loaded 10 file(s).
+    Raw shape : 16,233,002 × 80 (cleaned total: 11,688,879)
+
+  Preprocessing CIC18...
+    Duplicates removed : 78,074
+    Shape after preprocess : (1675933, 77)
+    Reference schema set from CIC18: 76 numeric feature(s)
+    Binary encoding → {0: 1475280, 1: 200653}
+
+  Target sample size: 300,000 (10% of 11,688,879, capped at 300,000)
+
+  [CIC18 sampling]
+    Input    : 1,675,933 rows, 2 classes
+    Method   : StratifiedShuffleSplit (no soft-floor needed)
+    Output   : 300,000 rows (17.9% of input)
+    Classes  : {0: np.int64(264082), 1: np.int64(35918)}
+
+  Train/test split (stratified, test=20%)...
+    Train : (240000, 76)  {0: 211266, 1: 28734}
+    Test  : (60000, 76)  {0: 52816, 1: 7184}
+
+  Saving to prepared_data\CIC18/
+  ✔ train.csv : 240,000 rows (101.9 MB)
+  ✔ test.csv  : 60,000 rows (25.5 MB)
+
+  ✔ CIC18 done in 331.2s
+    16,233,002 → 300,000 (sampled) → 240,000 train + 60,000 test
+
+======================================================================
+  PREPARING: CIC17
+  Path: H:\My Drive\0.RPL-LJ\ALTERNATE IDE JUDUL\CIC-IDS2017\CSVs\TrafficLabelling
+======================================================================
+
+  Loading CIC17...
+    Streaming mode           : total CSV size 1147.4 MB → chunked float32 (no pre-sample)
+    Reading: Friday-WorkingHours-Afternoon-DDos.pcap_ISCX.csv
+    Target recovery          : 1 candidate column(s), 225,745 non-empty label(s) recovered
+    Label preview            : {'DDoS': 128027, 'BENIGN': 97718}
+    Column names normalized : 70 whitespace/BOM fix(es), 0 alias rename(s), 0 alias overlap(s), 0 duplicate column group(s) coalesced
+    Reading: Friday-WorkingHours-Afternoon-PortScan.pcap_ISCX.csv
+    Target recovery          : 1 candidate column(s), 250,000 non-empty label(s) recovered
+    Label preview            : {'PortScan': 146222, 'BENIGN': 103778}
+    Column names normalized : 70 whitespace/BOM fix(es), 0 alias rename(s), 0 alias overlap(s), 0 duplicate column group(s) coalesced
+    Reading: Friday-WorkingHours-Morning.pcap_ISCX.csv
+    Target recovery          : 1 candidate column(s), 191,033 non-empty label(s) recovered
+    Label preview            : {'BENIGN': 189067, 'Bot': 1966}
+    Column names normalized : 70 whitespace/BOM fix(es), 0 alias rename(s), 0 alias overlap(s), 0 duplicate column group(s) coalesced
+    Reading: Monday-WorkingHours.pcap_ISCX.csv
+    Target recovery          : 1 candidate column(s), 250,000 non-empty label(s) recovered
+    Label preview            : {'BENIGN': 250000}
+    Column names normalized : 70 whitespace/BOM fix(es), 0 alias rename(s), 0 alias overlap(s), 0 duplicate column group(s) coalesced
+    Reading: Thursday-WorkingHours-Afternoon-Infilteration.pcap_ISCX.csv
+    Target recovery          : 1 candidate column(s), 250,000 non-empty label(s) recovered
+    Label preview            : {'BENIGN': 249964, 'Infiltration': 36}
+    Column names normalized : 70 whitespace/BOM fix(es), 0 alias rename(s), 0 alias overlap(s), 0 duplicate column group(s) coalesced
+    Reading: Thursday-WorkingHours-Morning-WebAttacks.pcap_ISCX.csv
+    Target recovery          : 1 candidate column(s), 170,366 non-empty label(s) recovered
+    Label preview            : {'BENIGN': 168186, 'Web Attack \x96 Brute Force': 1507, 'Web Attack \x96 XSS': 652, 'Web Attack \x96 Sql Injection': 21}
+    Column names normalized : 70 whitespace/BOM fix(es), 0 alias rename(s), 0 alias overlap(s), 0 duplicate column group(s) coalesced
+    Reading: Tuesday-WorkingHours.pcap_ISCX.csv
+    Target recovery          : 1 candidate column(s), 250,000 non-empty label(s) recovered
+    Label preview            : {'BENIGN': 239088, 'FTP-Patator': 7938, 'SSH-Patator': 2974}
+    Column names normalized : 70 whitespace/BOM fix(es), 0 alias rename(s), 0 alias overlap(s), 0 duplicate column group(s) coalesced
+    Reading: Wednesday-workingHours.pcap_ISCX.csv
+    Target recovery          : 1 candidate column(s), 250,000 non-empty label(s) recovered
+    Label preview            : {'DoS Hulk': 165695, 'BENIGN': 73010, 'DoS slowloris': 5796, 'DoS Slowhttptest': 5499}
+    Column names normalized : 70 whitespace/BOM fix(es), 0 alias rename(s), 0 alias overlap(s), 0 duplicate column group(s) coalesced
+    Loaded 8 file(s).
+    Raw shape : 3,119,345 × 85 (cleaned total: 2,314,590)
+
+  Preprocessing CIC17...
+    Duplicates removed : 114,807
+    Shape after preprocess : (2199783, 77)
+    Feature schema aligned   : 76 reference feature(s), 0 missing added, 0 extra dropped, 0 extra kept
+    Binary encoding → {0: 1863293, 1: 336490}
+
+  Target sample size: 231,459 (10% of 2,314,590, capped at 300,000)
+
+  [CIC17 sampling]
+    Input    : 2,199,783 rows, 2 classes
+    Method   : StratifiedShuffleSplit (no soft-floor needed)
+    Output   : 231,459 rows (10.5% of input)
+    Classes  : {0: np.int64(196054), 1: np.int64(35405)}
+
+  Train/test split (stratified, test=20%)...
+    Train : (185167, 76)  {0: 156843, 1: 28324}
+    Test  : (46292, 76)  {0: 39211, 1: 7081}
+
+  Saving to prepared_data\CIC17/
+  ✔ train.csv : 185,167 rows (76.3 MB)
+  ✔ test.csv  : 46,292 rows (19.1 MB)
+
+  ✔ CIC17 done in 79.1s
+    3,119,345 → 231,459 (sampled) → 185,167 train + 46,292 test
+
+======================================================================
+  SUMMARY
+======================================================================
+
+Dataset   Raw Rows Sampled   Train   Test  Features  Classes  Dropped   Time
+  CIC18 16,233,002 300,000 240,000 60,000        76        2        0 331.2s
+  CIC17  3,119,345 231,459 185,167 46,292        76        2        0  79.1s
+
+  ╔═══════════════════════════════════════════════════════════╗
+  ║  SCRIPT 00 COMPLETE ✔  (411.0s total)
+  ╠═══════════════════════════════════════════════════════════╣
+  ║  Prepared 2/2 datasets
+  ║  Output: ./prepared_data/
+  ║
+  ║  Next steps — for EACH prepared dataset:
+  ║
+  ║    Edit 01_train_save_models.py:
+  ║      PREPARED_DIR = "prepared_data/CIC18"
+  ║
+  ║    Then run:
+  ║      python 01_train_save_models.py
+  ║      python 02_load_explain_models.py
+  ╚═══════════════════════════════════════════════════════════╝
+    
+
+======================================================================
+  End Time      : 2026-11-26 23:52:33
+  Elapsed       : 411.06s
+======================================================================
